@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>UZYTKOWNIK</title>
+</h:head>
+<h:body>
+    <h2>EDYCJA</h2>
+    <h:form id="test">
+        <p:fieldset>
+            <h:panelGrid id="edituzytkownicy" style="margin-left: auto; margin-right: auto">
+                <h:column>
+                    <p:outputLabel value="Imie."/>
+                    <p:inputText value="#{edytujUzytkownikaControler.uzytkownikForm.imie}" />
+                </h:column>
+                <h:column>
+                    <p:outputLabel value="Nazwisko."/>
+                    <p:inputText value="#{edytujUzytkownikaControler.uzytkownikForm.nazwisko}" />
+                </h:column>
+                <h:column>
+                    <p:outputLabel value="Email."/>
+                    <p:inputText value="#{edytujUzytkownikaControler.uzytkownikForm.email}" />
+                </h:column>
+                <h:column>
+                    <p:outputLabel value="Telefon."/>
+                    <p:inputText value="#{edytujUzytkownikaControler.uzytkownikForm.telefon}" />
+                </h:column>
+                <h:column>
+                    <p:commandButton value="Zapisz" action="#{edytujUzytkownikaControler.edytujUzytkownika()}"/>
+                    <p:commandButton value="Powrot" action="uzytkownicy" />
+                </h:column>
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+    <h:form>
+        <h3 style="margin-top: 0"></h3>
+        <p:pickList id="pickList" value="#{edytujUzytkownikaControler.role}" var="role" itemLabel="#{role}" itemValue="#{role}" />
+        <p:commandButton id="rolaZapisz" value="Zapisz" update="displayRole" oncomplete="PF('roleDialog').show()" style="margin-top:5px" />
+        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="roleDialog">
+            <h:panelGrid id="displayRole" columns="2">
+                <h:outputText value="Source: " style="font-weight:bold" />
+                <ui:repeat value="#{edytujUzytkownikaControler.role.source}" var="item">
+                    <h:outputText value="#{item}" style="margin-right:5px" />
+                </ui:repeat>
+                <h:outputText value="Target: " style="font-weight:bold" />
+                <ui:repeat value="#{edytujUzytkownikaControler.role.target}" var="item">
+                    <h:outputText value="#{item}" style="margin-right:5px" />
+                </ui:repeat>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+</h:body>
+</html>

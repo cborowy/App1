@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>ROLE</title>
+</h:head>
+<h:body>
+    <h2>DODAWANIE</h2>
+    <h:form id="test">
+        <p:fieldset>
+            <h:panelGrid id="role" style="margin-left: auto; margin-right: auto">
+                <h:column>
+                    <p:outputLabel value="Podaj nazwe."/>
+                    <p:inputText value="#{dodajRoleControler.rolaForm.nazwa}" />
+                </h:column>
+                <h:column>
+                    <p:commandButton value="Dodaj" action="#{dodajRoleControler.dodajRole}" />
+                    <p:commandButton value="Powrot" action="role" />
+                </h:column>
+            </h:panelGrid>
+        </p:fieldset>
+    </h:form>
+    <h:form>
+        <h3 style="margin-top: 0"></h3>
+        <p:pickList id="pickList" value="#{dodajRoleControler.uprawnienia}" var="uprawnienia" itemLabel="#{uprawnienia}" itemValue="#{uprawnienia}" />
+        <p:commandButton id="uprawnienieZapisz" value="Zapisz" update="displayUprawnienia" oncomplete="PF('uprawnieniaDialog').show()" style="margin-top:5px" />
+        <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="uprawnieniaDialog">
+            <h:panelGrid id="displayUprawnienia" columns="2">
+                <h:outputText value="Source: " style="font-weight:bold" />
+                <ui:repeat value="#{dodajRoleControler.uprawnienia.source}" var="item">
+                    <h:outputText value="#{item}" style="margin-right:5px" />
+                </ui:repeat>
+                <h:outputText value="Target: " style="font-weight:bold" />
+                <ui:repeat value="#{dodajRoleControler.uprawnienia.target}" var="item">
+                    <h:outputText value="#{item}" style="margin-right:5px" />
+                </ui:repeat>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+</h:body>
+</html>

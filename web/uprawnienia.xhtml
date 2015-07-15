@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>UPRAWNIENIA</title>
+</h:head>
+<h:body>
+    <h:form id="uprawnienia">
+        <p:dataTable var="uprawnienieForm" value="#{pobierzUprawnieniaControler.listaUprawnien}">
+            <p:column headerText="Nazwa">
+                <h:outputText value="#{uprawnienieForm.nazwa}" />
+            </p:column>
+
+            <p:column headerText="skrot">
+                <h:outputText value="#{uprawnienieForm.skrot}" />
+            </p:column>
+            <p:column headerText="ID">
+                <h:outputText value="#{uprawnienieForm.id}" />
+            </p:column>
+            <p:column headerText="EDYTUJ">
+                <p:commandButton value="EDYTUJ" action="#{pobierzUprawnieniaControler.setURL(uprawnienieForm.id)}"></p:commandButton>
+            </p:column>
+            <p:column headerText="USUN">
+                <p:commandButton value="USUN" actionListener="#{usunUprawnienieControler.usunUprawnienie(uprawnienieForm)}" action="/uprawnienia.xhtml?faces-redirect=true"  update="@form"></p:commandButton>
+            </p:column>
+        </p:dataTable>
+        <h:commandButton value="Menu" action="menu"></h:commandButton>
+        <h:commandButton value="Dodaj" action="dodajuprawnienie"></h:commandButton>
+    </h:form>
+</h:body>
+</html>

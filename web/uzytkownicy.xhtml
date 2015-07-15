@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>UŻYTKOWNICY</title>
+</h:head>
+<h:body>
+    <h2>UZYTKOWNICY</h2>
+    <h:form id="test">
+        <p:dataTable var="uzytkownikForm" value="#{pobierzUzytkownikaControler.listaUzytkownikowForm}">
+            <p:column headerText="Imie">
+                <h:outputText value="#{uzytkownikForm.imie}" />
+            </p:column>
+
+            <p:column headerText="Nazwisko">
+                <h:outputText value="#{uzytkownikForm.nazwisko}" />
+            </p:column>
+
+            <p:column headerText="Email">
+                <h:outputText value="#{uzytkownikForm.email}" />
+            </p:column>
+
+            <p:column headerText="Telefon">
+                <h:outputText value="#{uzytkownikForm.telefon}" />
+            </p:column>
+            <p:column headerText="ID">
+                <h:outputText value="#{uzytkownikForm.id}" />
+            </p:column>
+
+            <p:column headerText="EDYTUJ">
+                <h:commandButton value="EDYTUJ" action="#{pobierzUzytkownikaControler.setURL(uzytkownikForm.id)}"></h:commandButton>
+            </p:column>
+
+            <p:column headerText="USUN">
+                <p:commandButton value="USUN" actionListener="#{usunUzytkownikaControler.usunUzytkownika(uzytkownikForm)}" action="/uzytkownicy.xhtml?faces-redirect=true"  update="@form"></p:commandButton>
+            </p:column>
+        </p:dataTable>
+        <h:commandButton value="Menu" action="menu"></h:commandButton>
+        <h:commandButton value="Dodaj" action="dodajuzytkownika"></h:commandButton>
+    </h:form>
+
+</h:body>
+</html>
